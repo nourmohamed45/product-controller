@@ -10,9 +10,9 @@ export const productList: IProduct[] = [
       "The BMW M4 Coupe is a high-performance variant of the BMW 4 Series. It features a powerful 3.0-liter inline-6 engine that produces 425 horsepower and 406 lb-ft of torque.",
     imageURL: "../../public/product-image/bmw-logo.webp",
     price: "69,150",
-    colors: ["#FFC107", "#8B9467", "#373737", "#F7F7F7"],
+    colors: ["#FFC107", "#8B9467", "#373737", "#F7F7F7", "#0032A0"], // Added BMW blue
     category: {
-      name: "BMW",
+      name: "Cars",
       imageURL: "../../public/product-image/bmw-logo.webp",
     },
   },
@@ -23,9 +23,9 @@ export const productList: IProduct[] = [
       "The Honda CBR500R is a sporty motorcycle that features a powerful 500cc engine that produces 47 horsepower and 42 lb-ft of torque.",
     imageURL: "../../public/product-image/honda-logo.webp",
     price: "6,799",
-    colors: ["#ED1C24", "#1A202C", "#F7F7F7", "#454545"],
+    colors: ["#ED1C24", "#1A202C", "#F7F7F7", "#454545"], // Retained original colors as they suit Honda's sporty aesthetic
     category: {
-      name: "Honda",
+      name: "Motocycles",
       imageURL: "../../public/product-image/honda-logo.webp",
     },
   },
@@ -36,9 +36,9 @@ export const productList: IProduct[] = [
       "The Dell XPS 13 is a high-performance laptop that features a powerful Intel Core i7 processor, 16GB of RAM, and a 512GB solid-state drive.",
     imageURL: "../../public/product-image/dell-logo.webp",
     price: "1,649.99",
-    colors: ["#454545", "#8B9467", "#FFFFFF", "#F7F7F7", "#1A202C"],
+    colors: ["#1A202C", "#F7F7F7", "#B1B1B1"], // Clean, minimal colors for a sleek laptop design
     category: {
-      name: "Dell",
+      name: "Laptops",
       imageURL: "../../public/product-image/dell-logo.webp",
     },
   },
@@ -49,9 +49,9 @@ export const productList: IProduct[] = [
       "The Nike Air Force 1 Low is a classic low-top sneaker that features a durable leather upper and a comfortable Air Force 1 sole.",
     imageURL: "../../public/product-image/nike-logo.webp",
     price: "80",
-    colors: ["#1A202C", "#FFC107", "#8B9467", "#454545", "#F7F7F7"],
+    colors: ["#1A202C", "#FFFFFF", "#FF0000", "#00FF00"], // Added red and green for a vibrant, streetwear-inspired look
     category: {
-      name: "Nike",
+      name: "Shoes",
       imageURL: "../../public/product-image/nike-logo.webp",
     },
   },
@@ -62,9 +62,9 @@ export const productList: IProduct[] = [
       "The Apple Watch Series 7 is a smartwatch that features a powerful A15 Bionic chip, 32GB of storage, and a range of fitness tracking features.",
     imageURL: "../../public/product-image/apple-watch-logo.webp",
     price: "399",
-    colors: ["#454545", "#8B9467", "#1A202C", "#F7F7F7", "#FFFFFF"],
+    colors: ["#1A202C", "#F7F7F7", "#B0B0B0"], // Simplified and sleek colors for a minimalist Apple design
     category: {
-      name: "Apple",
+      name: "Watches",
       imageURL: "../../public/product-image/apple-watch-logo.webp",
     },
   },
@@ -75,9 +75,9 @@ export const productList: IProduct[] = [
       "The Samsung Galaxy S22 Ultra is a high-performance smartphone that features a powerful Exynos 2100 processor, 12GB of RAM, and a 6.8-inch Dynamic AMOLED display.",
     imageURL: "../../public/product-image/samsung-logo.webp",
     price: "1,399.99",
-    colors: ["#1A202C", "#8B9467", "#FFFFFF", "#454545", "#F7F7F7"],
+    colors: ["#1A202C", "#B1B1B1", "#FFFFFF", "#9C27B0"], // Added a rich purple to reflect Samsung's premium design
     category: {
-      name: "Samsung",
+      name: "Mobiles",
       imageURL: "../../public/product-image/samsung-logo.webp",
     },
   },
@@ -88,9 +88,9 @@ export const productList: IProduct[] = [
       "The Canon EOS R5 is a high-performance mirrorless camera that features a 45MP full-frame sensor, 12fps continuous shooting, and 8K video recording.",
     imageURL: "../../public/product-image/canon-logo.webp",
     price: "3,999",
-    colors: ["#454545", "#8B9467", "#1A202C", "#F7F7F7", "#FFFFFF"],
+    colors: ["#1A202C", "#FFFFFF", "#D32F2F", "#B1B1B1"], // Added Canon red for brand consistency
     category: {
-      name: "Canon",
+      name: "Cameras",
       imageURL: "../../public/product-image/canon-logo.webp",
     },
   },
@@ -101,9 +101,9 @@ export const productList: IProduct[] = [
       "The Sony WH-1000XM4 is a premium wireless headphone that features advanced noise-cancellation technology, up to 30 hours of battery life, and a sleek design.",
     imageURL: "../../public/product-image/sony-logo.webp",
     price: "349.99",
-    colors: ["#1A202C", "#8B9467", "#FFFFFF", "#454545", "#F7F7F7"],
+    colors: ["#1A202C", "#FFFFFF", "#B1B1B1", "#FF9800"], // Added a vibrant orange for an energetic touch
     category: {
-      name: "Sony",
+      name: "Headphones",
       imageURL: "../../public/product-image/sony-logo.webp",
     },
   },
@@ -114,9 +114,9 @@ export const productList: IProduct[] = [
       "The Microsoft Xbox Series X is a high-performance gaming console that features a powerful AMD Zen 2 processor, 16GB of GDDR6 memory, and a custom AMD Radeon RDNA 2 GPU.",
     imageURL: "../../public/product-image/microsoft-logo.webp",
     price: "499.99",
-    colors: ["#1A202C", "#8B9467", "#454545", "#F7F7F7", "#FFFFFF"],
+    colors: ["#1A202C", "#B1B1B1", "#00FF00"], // Added Xbox green to represent the gaming console's brand color
     category: {
-      name: "Microsoft",
+      name: "Gaming",
       imageURL: "../../public/product-image/microsoft-logo.webp",
     },
   },
@@ -127,9 +127,9 @@ export const productList: IProduct[] = [
       "The Apple iPhone 13 Pro Max is a high-performance smartphone that features a 6.7-inch Super Retina XDR display, a powerful A15 Bionic processor, and a quad-camera setup with a telephoto lens and a ultra-wide-angle lens.",
     imageURL: "../../public/product-image/apple-logo.webp",
     price: "1,099.99",
-    colors: ["#454545", "#8B9467", "#FFFFFF", "#1A202C", "#F7F7F7"],
+    colors: ["#1A202C", "#FFFFFF", "#B0B0B0", "#007AFF"], // Added Apple blue for a signature look
     category: {
-      name: "Apple",
+      name: "Mobiles",
       imageURL: "../../public/product-image/apple-logo.webp",
     },
   },
@@ -140,9 +140,9 @@ export const productList: IProduct[] = [
       "The DJI FPV Drone is a high-performance drone that features a 4K camera, a powerful 4S LiPo battery, and a range of advanced flight modes.",
     imageURL: "../../public/product-image/dji-logo.webp",
     price: "1,299.99",
-    colors: ["#1A202C", "#8B9467", "#454545", "#F7F7F7", "#FFFFFF"],
+    colors: ["#1A202C", "#FFFFFF", "#00ACC1", "#F7F7F7"], // Added cyan to reflect DJI's advanced tech and sky imagery
     category: {
-      name: "DJI",
+      name: "Drones",
       imageURL: "../../public/product-image/dji-logo.webp",
     },
   },
@@ -153,9 +153,9 @@ export const productList: IProduct[] = [
       "The Sony Bravia XR55A90J is a high-performance 4K OLED TV that features a 55-inch screen, a powerful X1 processor, and a range of advanced features like HDR and Dolby Vision.",
     imageURL: "../../public/product-image/sony-tv-logo.webp",
     price: "1,999.99",
-    colors: ["#1A202C", "#8B9467", "#FFFFFF", "#454545", "#F7F7F7"],
+    colors: ["#1A202C", "#FFFFFF", "#B1B1B1", "#FF0000"], // Added red for a high-end look
     category: {
-      name: "Sony",
+      name: "Televisions",
       imageURL: "../../public/product-image/sony-tv-logo.webp",
     },
   },
@@ -166,10 +166,11 @@ export const productList: IProduct[] = [
       "The Garmin Forerunner 945 is a high-performance fitness tracker that features a 1.2-inch AMOLED display, a powerful processor, and a range of advanced features like GPS and GLONASS.",
     imageURL: "../../public/product-image/garmin-logo.webp",
     price: "649.99",
-    colors: ["#454545", "#8B9467", "#1A202C", "#F7F7F7", "#FFFFFF"],
+    colors: ["#1A202C", "#FFFFFF", "#1E88E5", "#B0B0B0"], // Added Garmin blue to represent its outdoor and fitness focus
     category: {
-      name: "Garmin",
+      name: "Fitness",
       imageURL: "../../public/product-image/garmin-logo.webp",
     },
   },
 ];
+
