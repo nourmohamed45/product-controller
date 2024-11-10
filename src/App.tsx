@@ -1,8 +1,9 @@
 import { useState } from "react";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
-import { productList } from "./data";
+import { formInputsList, productList } from "./data";
 import Button from "./components/ui/Button";
+import Input from "./components/ui/Input";
 
 const App = () => {
   // ------------ State ------------
@@ -21,19 +22,33 @@ const App = () => {
   const renderProductList = productList.map((product) => {
     return <ProductCard key={product.id} product={product} />;
   });
+
+  const renderFormInputList = formInputsList.map((input) => {
+    return (
+      <div key={input.id} className="relative rounded-md shadow-sm">
+        <label key={input.id}  htmlFor={input.id} className="sr-only">
+          {input.label}
+        </label>
+        <Input  type="text" name={input.name} id={input.id} input={input} placeholder={input.label} />
+      </div>
+    );
+  });
   return (
     <main className="container mx-auto">
       <Button
         type="button"
         onClick={open}
         className="rounded-md m-5 bg-indigo-500 py-2 px-4 text-sm font-medium text-white focus:outline-none hover:bg-indigo-600 transition-all ease-in duration-100"
-      >Add Product</Button>
+      >
+        Add Product
+      </Button>
       <div className="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6 p-2 rounded-md ">
         {renderProductList}
       </div>
 
       <Modal isOpen={isOpen} close={close} title="Add a New Product">
-        <div className="mt-4 flex gap-4">
+        <div className="space-y-6">{renderFormInputList}</div>
+        <div className="mt-8 flex gap-4">
           <Button
             type="button"
             className="bg-indigo-500 hover:bg-indigo-600"
