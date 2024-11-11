@@ -1,8 +1,6 @@
 import { InputHTMLAttributes } from "react";
-import { IFormInput } from "../../interfaces";
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
-  input: IFormInput;
 }
 
 const Input = ({ ...rest }: IProps) => {
