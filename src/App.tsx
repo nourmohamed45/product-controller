@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
 import { formInputsList, productList } from "./data";
@@ -7,8 +7,8 @@ import Input from "./components/ui/Input";
 import { IProduct } from "./interfaces";
 
 const App = () => {
-  // ------------ State ------------
-  const [product, setProduct] = useState<IProduct>({
+  // ------------ Variables ------------
+  const defaultProductObject = {
     title: "",
     description: "",
     imageURL: "",
@@ -18,7 +18,9 @@ const App = () => {
       name: "",
       imageURL: "",
     },
-  })
+  }
+  // ------------ State ------------
+  const [product, setProduct] = useState<IProduct>(defaultProductObject)
   let [isOpen, setIsOpen] = useState(false);
 
   // ------------ Functions ------------
@@ -33,6 +35,16 @@ const App = () => {
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setProduct({...product, [name]: value });
+  }
+
+  const submitHandler = (event: MouseEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
+    console.log(product)
+  }
+
+  const closeHandler = (): void => {
+    setProduct(defaultProductObject)
+    setIsOpen(false);
   }
 
   // ------------ Rendering ------------
@@ -50,6 +62,8 @@ const App = () => {
       </div>
     );
   });
+  
+
   return (
     <main className="container mx-auto">
       <Button
@@ -67,9 +81,10 @@ const App = () => {
         <div className="space-y-6">{renderFormInputList}</div>
         <div className="mt-8 flex gap-4">
           <Button
-            type="button"
+            type="submit"
             className="bg-indigo-500 hover:bg-indigo-600"
             width="w-full"
+            onClick={submitHandler}
           >
             Submit
           </Button>
@@ -77,6 +92,7 @@ const App = () => {
             type="button"
             className="bg-red-500 hover:bg-red-600"
             width="w-full"
+            onClick={closeHandler}
           >
             Cancel
           </Button>
