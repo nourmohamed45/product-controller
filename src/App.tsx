@@ -8,6 +8,7 @@ import { IProduct } from "./interfaces";
 import { productValidator } from "./validation";
 import ErrorMessage from "./components/ErrorMessage";
 import CircleColor from "./components/CircleColor";
+import { nanoid } from "nanoid";
 
 const App = () => {
   // ------------ Variables ------------
@@ -23,6 +24,7 @@ const App = () => {
     },
   };
   // ------------ State ------------
+  const [products, setProducts] = useState<IProduct[]>(productList);
   const [product, setProduct] = useState<IProduct>(defaultProductObject);
   const [isOpen, setIsOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState({
@@ -54,6 +56,7 @@ const App = () => {
 
   const closeHandler = (): void => {
     setProduct(defaultProductObject);
+    setTempColor([]);
     setIsOpen(false);
   };
 
@@ -76,11 +79,13 @@ const App = () => {
       console.log(errors);
       return;
     }
-    console.log("Sending Form Submit");
+
+    setProducts((prev) => [{...product, id: nanoid(), colors: tempColor}, ...prev]);
+    closeHandler()
   };
 
   // ------------ Rendering ------------
-  const renderProductList = productList.map((product) => {
+  const renderProductList = products.map((product) => {
     return <ProductCard key={product.id} product={product} />;
   });
 
@@ -118,7 +123,11 @@ const App = () => {
             }
             setTempColor((prev) => [...prev, color]);
           }}
-          style={{opacity: tempColor.includes(color) ? ".3" : "1",scale: tempColor.includes(color) ? ".8" : "1", backgroundColor: color}}
+          style={{
+            opacity: tempColor.includes(color) ? ".3" : "1",
+            scale: tempColor.includes(color) ? ".8" : "1",
+            backgroundColor: color,
+          }}
         />
       );
     });
