@@ -1,4 +1,3 @@
-
 import { nanoid } from "nanoid";
 import { IFormInput, IProduct } from "../interfaces";
 
@@ -198,5 +197,18 @@ export const formInputsList: IFormInput[] = [
     name: "price",
     label: "Product Price",
     type: "number",
-  }
-]
+  },
+];
+
+export const productColors: string[] = [
+  "#FFC107",
+  "#8B9467",
+  "#373737",
+  "#F7F7F7",
+  "#0032A0",
+  "#9C27B0",
+  "#66D9EF",
+  "#E91E63",
+  "#2196F3",
+  "#4CAF50",
+];

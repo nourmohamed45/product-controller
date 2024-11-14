@@ -1,12 +1,13 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
 import ProductCard from "./components/ProductCard";
 import Modal from "./components/ui/Modal";
-import { formInputsList, productList } from "./data";
+import { formInputsList, productColors, productList } from "./data";
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import { IProduct } from "./interfaces";
 import { productValidator } from "./validation";
 import ErrorMessage from "./components/ErrorMessage";
+import CircleColor from "./components/CircleColor";
 
 const App = () => {
   // ------------ Variables ------------
@@ -31,7 +32,10 @@ const App = () => {
     price: "",
   });
 
-  console.log(errorMsg.title)
+  const [tempColor, setTempColor] = useState<string[]>([]);
+  console.log(tempColor);
+
+  // console.log(errorMsg.title)
 
   // ------------ Functions ------------
   function open() {
@@ -64,12 +68,12 @@ const App = () => {
     console.log(hasErrors);
     if (!hasErrors) {
       setErrorMsg({
-        title: errors.title || '',
-        description: errors.description || '',
-        imageURL: errors.imageURL || '',
-        price: errors.price || '',
+        title: errors.title || "",
+        description: errors.description || "",
+        imageURL: errors.imageURL || "",
+        price: errors.price || "",
       });
-      console.log(errors)
+      console.log(errors);
       return;
     }
     console.log("Sending Form Submit");
@@ -99,6 +103,27 @@ const App = () => {
     );
   });
 
+  const renderProductColor = () => {
+    return productColors.map((color) => {
+      return (
+        <CircleColor
+          key={color}
+          color={color}
+          onClick={() => {
+            if (tempColor.includes(color)) {
+              setTempColor((prev) =>
+                prev.filter((prevColor) => prevColor !== color)
+              );
+              return;
+            }
+            setTempColor((prev) => [...prev, color]);
+          }}
+          style={{opacity: tempColor.includes(color) ? ".3" : "1",scale: tempColor.includes(color) ? ".8" : "1", backgroundColor: color}}
+        />
+      );
+    });
+  };
+
   return (
     <main className="container mx-auto">
       <Button
@@ -114,6 +139,22 @@ const App = () => {
 
       <Modal isOpen={isOpen} close={close} title="Add a New Product">
         <div className="space-y-6">{renderFormInputList}</div>
+
+        <div className="flex items-center space-x-2 my-4">
+          {renderProductColor()}
+        </div>
+        <div className="flex items-center space-x-1 flex-wrap justify-end my-4">
+          {tempColor.map((color) => {
+            return (
+              <span
+                className="rounded mb-2 "
+                style={{ backgroundColor: color }}
+              >
+                {color}
+              </span>
+            );
+          })}
+        </div>
         <div className="mt-8 flex gap-4">
           <Button
             type="submit"
