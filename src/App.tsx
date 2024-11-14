@@ -5,6 +5,8 @@ import { formInputsList, productList } from "./data";
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import { IProduct } from "./interfaces";
+import { productValidator } from "./validation";
+import ErrorMessage from "./components/ErrorMessage";
 
 const App = () => {
   // ------------ Variables ------------
@@ -18,10 +20,18 @@ const App = () => {
       name: "",
       imageURL: "",
     },
-  }
+  };
   // ------------ State ------------
-  const [product, setProduct] = useState<IProduct>(defaultProductObject)
-  let [isOpen, setIsOpen] = useState(false);
+  const [product, setProduct] = useState<IProduct>(defaultProductObject);
+  const [isOpen, setIsOpen] = useState(false);
+  const [errorMsg, setErrorMsg] = useState({
+    title: "",
+    description: "",
+    imageURL: "",
+    price: "",
+  });
+
+  console.log(errorMsg.title)
 
   // ------------ Functions ------------
   function open() {
@@ -34,18 +44,36 @@ const App = () => {
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setProduct({...product, [name]: value });
-  }
+    setProduct({ ...product, [name]: value });
+    setErrorMsg({ ...errorMsg, [name]: "" });
+  };
+
+  const closeHandler = (): void => {
+    setProduct(defaultProductObject);
+    setIsOpen(false);
+  };
 
   const submitHandler = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    console.log(product)
-  }
+    const errors = productValidator(product);
 
-  const closeHandler = (): void => {
-    setProduct(defaultProductObject)
-    setIsOpen(false);
-  }
+    // console.log(errors);
+    const hasErrors =
+      Object.values(errors).some((err) => err === "") &&
+      Object.values(errors).every((err) => err === "");
+    console.log(hasErrors);
+    if (!hasErrors) {
+      setErrorMsg({
+        title: errors.title || '',
+        description: errors.description || '',
+        imageURL: errors.imageURL || '',
+        price: errors.price || '',
+      });
+      console.log(errors)
+      return;
+    }
+    console.log("Sending Form Submit");
+  };
 
   // ------------ Rendering ------------
   const renderProductList = productList.map((product) => {
@@ -54,15 +82,22 @@ const App = () => {
 
   const renderFormInputList = formInputsList.map((input) => {
     return (
-      <div key={input.id} className="relative rounded-md shadow-sm">
-        <label key={input.id}  htmlFor={input.id} className="sr-only">
+      <div key={input.id} className="relative rounded-md">
+        <label key={input.id} htmlFor={input.id} className="sr-only">
           {input.label}
         </label>
-        <Input  type="text" name={input.name} id={input.id}  placeholder={input.label} value={product[input.name]} onChange={onChangeHandler} />
+        <Input
+          type="text"
+          name={input.name}
+          id={input.id}
+          placeholder={input.label}
+          value={product[input.name]}
+          onChange={onChangeHandler}
+        />
+        <ErrorMessage msg={errorMsg[input.name]} />
       </div>
     );
   });
-  
 
   return (
     <main className="container mx-auto">
