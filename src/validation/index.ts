@@ -28,22 +28,28 @@
  * - price: Must be a non-empty string representing a valid number.
  * - imageURL: Must be a non-empty string containing a valid URL (ftp, http, or https).
  */
+
+
+type ErrorMsgType = {
+  title: string;
+  description: string;
+  price: string;
+  imageURL: string;
+  colors: string;
+};
 export const productValidator = (product: {
   title: string;
   description: string;
   price: string;
   imageURL: string;
-}): {[key: string]: string} => {
-  const errors: {
-    title: string;
-    description: string;
-    price: string;
-    imageURL: string;
-  } = {
+  colors: string | string[];
+}): ErrorMsgType => {
+  const errors: ErrorMsgType = {
     title: "",
     description: "",
     price: "",
     imageURL: "",
+    colors: "",
   };
 
   const validUrl = /^(ftp|http|https):\/\/[^ "]+$/.test(product.imageURL);
@@ -71,6 +77,10 @@ export const productValidator = (product: {
 
   if (!product.price.trim() || isNaN(Number(product.price))) {
     errors.price = "Product price must be a number";
+  }
+
+  if (Array.isArray(product.colors) && product.colors.length === 0) {
+    errors.colors = "Please select at least one color";
   }
 
   return errors;
