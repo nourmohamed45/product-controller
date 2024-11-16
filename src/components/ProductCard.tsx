@@ -43,6 +43,7 @@ const ProductCard = ({
    */
   const onEdit = () => {
     setProductToEdit(product);
+    console.log(product);
     openEditModal();
     setProductToEditIdx(idx);
   };
@@ -67,7 +68,7 @@ const ProductCard = ({
       </p>
 
       {/* Product Colors */}
-      <div className="flex items-center space-x-2 my-4">
+      <div className="flex items-center flex-wrap justify-end space-x-2 my-4">
         {renderProductColor()}
       </div>
 

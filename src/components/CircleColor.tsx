@@ -12,7 +12,7 @@ interface IProps extends HTMLAttributes<HTMLSpanElement> {
 
 const CircleColor = ({color, ...rest}: IProps) => {
   return (
-    <span className={`w-6 h-6 rounded-full border-2 border-gray-700 cursor-pointer`} style={{backgroundColor: color}} {...rest}/>
+    <span className={`w-6 h-6 rounded-full mb-1 border-2 border-gray-700 cursor-pointer`} style={{backgroundColor: color}} {...rest}/>
   )
 }
 
