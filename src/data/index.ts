@@ -48,7 +48,7 @@ export const productList: IProduct[] = [
       "The Nike Air Force 1 Low is a classic low-top sneaker that features a durable leather upper and a comfortable Air Force 1 sole.",
     imageURL: "../../public/product-image/nike-logo.webp",
     price: "80",
-    colors: ["#1A202C", "#FF0000", "#00FF00"], // Added red and green for a vibrant, streetwear-inspired look
+    colors: ["#1A202C", "#FF0000", "#00FF00"],
     category: {
       name: "Shoes",
       imageURL: "../../public/product-image/nike-logo.webp",
@@ -87,7 +87,7 @@ export const productList: IProduct[] = [
       "The Canon EOS R5 is a high-performance mirrorless camera that features a 45MP full-frame sensor, 12fps continuous shooting, and 8K video recording.",
     imageURL: "../../public/product-image/canon-logo.webp",
     price: "3999",
-    colors: ["#1A202C", "#D32F2F", "#B1B1B1"], // Added Canon red for brand consistency
+    colors: ["#1A202C", "#D32F2F", "#B1B1B1"], 
     category: {
       name: "Cameras",
       imageURL: "../../public/product-image/canon-logo.webp",
@@ -152,7 +152,7 @@ export const productList: IProduct[] = [
       "The Sony Bravia XR55A90J is a high-performance 4K OLED TV that features a 55-inch screen, a powerful X1 processor, and a range of advanced features like HDR and Dolby Vision.",
     imageURL: "../../public/product-image/sony-tv-logo.webp",
     price: "1999.99",
-    colors: ["#1A202C", "#B1B1B1", "#FF0000"], // Added red for a high-end look
+    colors: ["#1A202C", "#B1B1B1", "#FF0000"], 
     category: {
       name: "Televisions",
       imageURL: "../../public/product-image/sony-tv-logo.webp",

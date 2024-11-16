@@ -2,19 +2,25 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { ReactNode } from "react";
 
 interface IProps {
-  isOpen: boolean;
-  close: () => void;
+  isOpenDeleteConfirmModal: boolean;
+  closeDeleteConfirmModal: () => void;
   title?: string;
   children: ReactNode;
 }
 
-const Modal = ({ isOpen, close, title, children }: IProps) => {
+const DeleteModal = ({
+  isOpenDeleteConfirmModal,
+  closeDeleteConfirmModal,
+  title,
+  children,
+}: IProps) => {
   return (
     <Dialog
-      open={isOpen}
+      open={isOpenDeleteConfirmModal}
       as="div"
       className="relative z-10 focus:outline-none"
-      onClose={close}
+      onClose={closeDeleteConfirmModal}
+      __demoMode
     >
       {/* Backdrop */}
       <div className="fixed inset-0">
@@ -24,18 +30,20 @@ const Modal = ({ isOpen, close, title, children }: IProps) => {
           aria-hidden="true"
         />
       </div>
+
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
           <DialogPanel
             transition
             className="w-full max-w-md rounded-xl bg-prodModalBg shadow-xl p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
           >
-            {title && (
-              <DialogTitle as="h3" className="text-base/7 font-bold text-titleColor">
-                {title}
-              </DialogTitle>
-            )}
-
+            {
+              title && (
+                <DialogTitle as="h3" className="text-base/7 font-bold text-secondaryButton text-[22px] mb-3">
+                  {title}
+                </DialogTitle>
+              )
+            }
             {children}
           </DialogPanel>
         </div>
@@ -44,4 +52,4 @@ const Modal = ({ isOpen, close, title, children }: IProps) => {
   );
 };
 
-export default Modal;
+export default DeleteModal;

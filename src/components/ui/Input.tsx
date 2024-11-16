@@ -6,7 +6,7 @@ const Input = ({ ...rest }: IProps) => {
   return (
     <input
       {...rest}
-      className="w-full bg-transparent border-b-red-500 border-b-1 p-2 mt-2 outline-none caret-indigo-500 text-black placeholder:text-black shadow-black shadow-inner rounded-md focus:ring-2 focus:ring-indigo-400"
+      className="w-full bg-transparent border-b-1 p-2 mt-2 outline-none caret-primaryButton text-titleColor placeholder:text-subtitleColor shadow-gray-600 shadow-sm rounded-md focus:ring-2 focus:ring-primaryShadowButton"
     />
   );
 };

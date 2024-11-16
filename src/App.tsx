@@ -15,7 +15,8 @@ import ErrorMessage from "./components/ErrorMessage";
 import CircleColor from "./components/CircleColor";
 import { nanoid } from "nanoid";
 import SelectCategory from "./components/ui/SelectCategory";
-// import { TProductName } from "./types";
+import DeleteModal from "./components/ui/DeleteModal";
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = () => {
   // ------------ Variables ------------
@@ -40,6 +41,8 @@ const App = () => {
   // Modal States
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+  const [isOpenDeleteConfirmModal, setIsOpenDeleteConfirmModal] =
+    useState(false);
 
   // Error Message States
   const [errorMsg, setErrorMsg] = useState({
@@ -60,7 +63,9 @@ const App = () => {
   const [editTempColor, setEditTempColor] = useState<string[]>([
     ...productToEdit.colors,
   ]);
-  const [editSelectedCategory, setEditSelectedCategory] = useState(categoriesList[0]);
+  const [editSelectedCategory, setEditSelectedCategory] = useState(
+    categoriesList[0]
+  );
 
   // ------------ Functions ------------
   // Add Modal
@@ -71,6 +76,7 @@ const App = () => {
   function close() {
     setIsOpen(false);
   }
+
   // Edit Modal
   function openEditModal() {
     setIsOpenEditModal(true);
@@ -78,6 +84,15 @@ const App = () => {
 
   function closeEditModal() {
     setIsOpenEditModal(false);
+  }
+
+  // Delete Modal
+  function openDeleteConfirmModal() {
+    setIsOpenDeleteConfirmModal(true);
+  }
+
+  function closeDeleteConfirmModal() {
+    setIsOpenDeleteConfirmModal(false);
   }
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -131,6 +146,7 @@ const App = () => {
       ...prev,
     ]);
     closeHandler();
+    toast('Product has been added', { icon: '✅', duration: 2000, style: { background: "#4f46e5", color: "white"} });
   };
   const submitEditHandler = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
@@ -167,6 +183,13 @@ const App = () => {
 
     setProductToEdit(defaultProductObject);
     closeEditModal();
+    toast('Product has been updated', { icon: '🚀', duration: 2000, style: { background: "#4f46e5", color: "white"} });
+  };
+
+  const DeleteOnClickHandler = (idx: number) => {
+    setProducts((prev) => prev.filter((_, i) => i !== idx));
+    closeDeleteConfirmModal();
+    toast('Product has been deleted', { icon: '🗑️', duration: 2000, style: { background: "#4f46e5", color: "white"} });
   };
 
   const ColorOnClickHandler = (color: string) => {
@@ -207,6 +230,10 @@ const App = () => {
           setEditTempColor([...product.colors]);
           openEditModal();
         }}
+        openDeleteConfirmModal={() => {
+          setProductToEditIdx(idx);
+          openDeleteConfirmModal();
+        }}
         idx={idx}
         setProductToEditIdx={setProductToEditIdx}
       />
@@ -216,7 +243,7 @@ const App = () => {
   const renderFormInputList = formInputsList.map((input) => {
     return (
       <div key={input.id} className="relative rounded-md">
-        <label htmlFor={input.id} className="sr-only">
+        <label htmlFor={input.id} className="text-primaryShadowButton mt-3 block text-sm font-medium">
           {input.label}
         </label>
         <Input
@@ -232,7 +259,10 @@ const App = () => {
     );
   });
 
-  const renderProductColor = (colorHandler: (color:string) => void, selectedcolors: string[]) => {
+  const renderProductColor = (
+    colorHandler: (color: string) => void,
+    selectedcolors: string[]
+  ) => {
     return productColors.map((color) => {
       return (
         <CircleColor
@@ -251,41 +281,18 @@ const App = () => {
     });
   };
 
-  // const renderEditFormInputListWithErrorMsg = (
-  //   id: string,
-  //   label: string,
-  //   name: TProductName
-  // ) => {
-  //   return (
-  //     <div className="relative rounded-md">
-  //       <label
-  //         htmlFor={id}
-  //         className="text-black mt-3 block text-sm font-medium"
-  //       >
-  //         {label}
-  //       </label>
-  //       <Input
-  //         type="text"
-  //         name={name}
-  //         id={id}
-  //         placeholder={name}
-  //         value={productToEdit[name]}
-  //         onChange={onChangeEditHandler}
-  //       />
-  //       <ErrorMessage msg={errorMsg[name]} />
-  //     </div>
-  //   );
-  // };
-
   return (
     <main className="container mx-auto">
-      <Button
-        type="button"
-        onClick={open}
-        className="rounded-md m-5 bg-indigo-500 py-2 px-4 text-sm font-medium text-white focus:outline-none hover:bg-indigo-600 transition-all ease-in duration-100"
-      >
-        Add Product
-      </Button>
+      <div className="flex justify-between items-center">
+        <h1 className="text-[30px] font-bold text-titleColor m-5 p-2">Products</h1>
+        <Button
+          type="button"
+          onClick={open}
+          className="rounded-md m-5 bg-primaryButton py-2 px-4 text-[18px] font-medium text-white focus:outline-none hover:bg-primaryBoldButton transition-all ease-in duration-100"
+        >
+          Add Product
+        </Button>
+      </div>
       <div className="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6 p-2 rounded-md ">
         {renderProductList}
       </div>
@@ -310,7 +317,7 @@ const App = () => {
             return (
               <span
                 key={color}
-                className="rounded mb-2 "
+                className="rounded mb-2 text-black text-[14px] font-semibold py-1 px-2"
                 style={{ backgroundColor: color }}
               >
                 {color}
@@ -321,7 +328,7 @@ const App = () => {
         <div className="mt-8 flex gap-4">
           <Button
             type="submit"
-            className="bg-indigo-500 hover:bg-indigo-600"
+            className="bg-primaryButton hover:bg-primaryBoldButton"
             width="w-full"
             onClick={submitHandler}
           >
@@ -329,7 +336,7 @@ const App = () => {
           </Button>
           <Button
             type="button"
-            className="bg-red-500 hover:bg-red-600"
+            className="bg-secondaryButton hover:bg-secondaryBoldButton"
             width="w-full"
             onClick={closeHandler}
           >
@@ -346,7 +353,10 @@ const App = () => {
       >
         {formInputsList.map((input) => (
           <div key={input.id} className="relative rounded-md">
-            <label htmlFor={input.id} className="text-black mt-3 block text-sm font-medium">
+            <label
+              htmlFor={input.id}
+              className="text-primaryShadowButton mt-3 block text-sm font-medium"
+            >
               {input.label}
             </label>
             <Input
@@ -378,7 +388,7 @@ const App = () => {
             return (
               <span
                 key={color}
-                className="rounded mb-2 "
+                className="rounded mb-2 text-black text-[14px] font-bold py-1 px-2"
                 style={{ backgroundColor: color }}
               >
                 {color}
@@ -389,7 +399,7 @@ const App = () => {
         <div className="mt-8 flex gap-4">
           <Button
             type="submit"
-            className="bg-indigo-500 hover:bg-indigo-600"
+            className="bg-primaryButton hover:bg-primaryBoldButton"
             width="w-full"
             onClick={submitEditHandler}
           >
@@ -397,7 +407,7 @@ const App = () => {
           </Button>
           <Button
             type="button"
-            className="bg-red-500 hover:bg-red-600"
+            className="bg-secondaryButton hover:bg-secondaryBoldButton"
             width="w-full"
             onClick={closeEditModal}
           >
@@ -405,6 +415,38 @@ const App = () => {
           </Button>
         </div>
       </Modal>
+
+      {/* Delete Confirm Modal */}
+
+      <DeleteModal
+        isOpenDeleteConfirmModal={isOpenDeleteConfirmModal}
+        closeDeleteConfirmModal={closeDeleteConfirmModal}
+        title={"Delete Confimation!"}
+      >
+        <div>
+          <p className="text-subtitleColor font-medium">Are you sure you want to delete this product?</p>
+        </div>
+        <div className="mt-8 flex gap-4">
+          <Button
+            type="submit"
+            className="bg-secondaryButton  hover:bg-secondaryBoldButton"
+            width="w-full"
+            onClick={() => DeleteOnClickHandler(productToEditIdx)}
+          >
+            Yes, Delete
+          </Button>
+          <Button
+            type="button"
+            className="bg-transparent text-primaryButton border-primaryShadowButton border-2 hover:bg-primaryShadowButton hover:text-white"
+            width="w-full"
+            onClick={closeDeleteConfirmModal}
+          >
+            Cancel
+          </Button>
+        </div>
+      </DeleteModal>
+
+      <Toaster />
     </main>
   );
 };

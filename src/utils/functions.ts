@@ -11,3 +11,7 @@ export const txtSlicer = (text: string, length: number = 50) => {
     return text
   }
 }
+
+export const numberWithCommas = (x: string) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
