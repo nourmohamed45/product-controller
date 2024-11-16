@@ -1,3 +1,9 @@
+/**
+ * ErrorMessage component
+ * This component will show an error message if the msg prop is not null or empty
+ * @param {{ msg: string }} props - The props of the component
+ * @returns {JSX.Element} The component
+ */
 interface IProps {
   msg: string;
 }

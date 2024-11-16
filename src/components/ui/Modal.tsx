@@ -1,3 +1,12 @@
+/**
+ * Modal component
+ * @param isOpen - If the modal is open or not
+ * @param close - Function to close the modal
+ * @param title - The title of the modal
+ * @param children - The content of the modal
+ * @returns {JSX.Element} The modal component
+ */
+
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { ReactNode } from "react";
 
@@ -31,7 +40,10 @@ const Modal = ({ isOpen, close, title, children }: IProps) => {
             className="w-full max-w-md rounded-xl bg-prodModalBg shadow-xl p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
           >
             {title && (
-              <DialogTitle as="h3" className="text-base/7 font-bold text-titleColor">
+              <DialogTitle
+                as="h3"
+                className="text-base/7 font-bold text-titleColor"
+              >
                 {title}
               </DialogTitle>
             )}

@@ -1,3 +1,8 @@
+/**
+ * Input component
+ * @param rest - InputHTMLAttributes<HTMLInputElement>, other props
+ * @returns React Component
+ */
 import { InputHTMLAttributes } from "react";
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {}
@@ -12,3 +17,4 @@ const Input = ({ ...rest }: IProps) => {
 };
 
 export default Input;
+

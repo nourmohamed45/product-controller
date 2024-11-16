@@ -1,3 +1,11 @@
+/**
+ * This file contain data that will be use in the application
+ * - productList: An array of object that contain all the product
+ * - categoriesList: An array of object that contain all the category
+ * - formInputsList: An array of object that contain all the form input
+ * - productColors: An array of object that contain all the color option
+ */
+
 import { nanoid } from "nanoid";
 import { ICategory, IFormInput, IProduct } from "../interfaces";
 

@@ -12,6 +12,12 @@ export const txtSlicer = (text: string, length: number = 50) => {
   }
 }
 
-export const numberWithCommas = (x: string) => {
+/**
+ * Format a number with commas
+ * @param {string} x - the number to be formatted
+ * @returns {string} - the formatted number with commas
+ */
+export const numberWithCommas = (x: string) : string => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+

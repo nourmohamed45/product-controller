@@ -16,7 +16,7 @@ import CircleColor from "./components/CircleColor";
 import { nanoid } from "nanoid";
 import SelectCategory from "./components/ui/SelectCategory";
 import DeleteModal from "./components/ui/DeleteModal";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 const App = () => {
   // ------------ Variables ------------
@@ -75,6 +75,13 @@ const App = () => {
 
   function close() {
     setIsOpen(false);
+    setErrorMsg({
+      title: "",
+      description: "",
+      imageURL: "",
+      price: "",
+      colors: "",
+    });
   }
 
   // Edit Modal
@@ -84,6 +91,13 @@ const App = () => {
 
   function closeEditModal() {
     setIsOpenEditModal(false);
+    setErrorMsg({
+      title: "",
+      description: "",
+      imageURL: "",
+      price: "",
+      colors: "",
+    });
   }
 
   // Delete Modal
@@ -109,6 +123,13 @@ const App = () => {
 
   const closeHandler = (): void => {
     setProduct(defaultProductObject);
+    setErrorMsg({
+      title: "",
+      description: "",
+      imageURL: "",
+      price: "",
+      colors: "",
+    });
     setTempColor([]);
     setIsOpen(false);
   };
@@ -146,7 +167,11 @@ const App = () => {
       ...prev,
     ]);
     closeHandler();
-    toast('Product has been added', { icon: '✅', duration: 2000, style: { background: "#4f46e5", color: "white"} });
+    toast("Product has been added", {
+      icon: "✅",
+      duration: 2000,
+      style: { background: "#4f46e5", color: "white" },
+    });
   };
   const submitEditHandler = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
@@ -183,13 +208,21 @@ const App = () => {
 
     setProductToEdit(defaultProductObject);
     closeEditModal();
-    toast('Product has been updated', { icon: '🚀', duration: 2000, style: { background: "#4f46e5", color: "white"} });
+    toast("Product has been updated", {
+      icon: "🚀",
+      duration: 2000,
+      style: { background: "#4f46e5", color: "white" },
+    });
   };
 
   const DeleteOnClickHandler = (idx: number) => {
     setProducts((prev) => prev.filter((_, i) => i !== idx));
     closeDeleteConfirmModal();
-    toast('Product has been deleted', { icon: '🗑️', duration: 2000, style: { background: "#4f46e5", color: "white"} });
+    toast("Product has been deleted", {
+      icon: "🗑️",
+      duration: 2000,
+      style: { background: "#4f46e5", color: "white" },
+    });
   };
 
   const ColorOnClickHandler = (color: string) => {
@@ -243,7 +276,10 @@ const App = () => {
   const renderFormInputList = formInputsList.map((input) => {
     return (
       <div key={input.id} className="relative rounded-md">
-        <label htmlFor={input.id} className="text-primaryShadowButton mt-3 block text-sm font-medium">
+        <label
+          htmlFor={input.id}
+          className="text-primaryShadowButton mt-3 block text-sm font-medium"
+        >
           {input.label}
         </label>
         <Input
@@ -284,7 +320,9 @@ const App = () => {
   return (
     <main className="container mx-auto">
       <div className="flex justify-between items-center">
-        <h1 className="text-[30px] font-bold text-titleColor m-5 p-2">Products</h1>
+        <h1 className="text-[30px] font-bold text-titleColor m-5 p-2">
+          Products
+        </h1>
         <Button
           type="button"
           onClick={open}
@@ -417,14 +455,15 @@ const App = () => {
       </Modal>
 
       {/* Delete Confirm Modal */}
-
       <DeleteModal
         isOpenDeleteConfirmModal={isOpenDeleteConfirmModal}
         closeDeleteConfirmModal={closeDeleteConfirmModal}
         title={"Delete Confimation!"}
       >
         <div>
-          <p className="text-subtitleColor font-medium">Are you sure you want to delete this product?</p>
+          <p className="text-subtitleColor font-medium">
+            Are you sure you want to delete this product?
+          </p>
         </div>
         <div className="mt-8 flex gap-4">
           <Button

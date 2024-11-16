@@ -1,3 +1,9 @@
+/**
+ * A custom select component that allows the user to select a category
+ * @param selected - The currently selected category
+ * @param setSelected - A function to change the selected category
+ * @returns A custom select component
+ */
 "use client";
 
 import {
@@ -80,3 +86,4 @@ const SelectCategory = ({ selected, setSelected }: IProps) => {
 };
 
 export default SelectCategory;
+

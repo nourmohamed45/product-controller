@@ -1,3 +1,12 @@
+/**
+ * Button component
+ * @param children - ReactNode, children of the button
+ * @param className - string, className of the button
+ * @param type - "button" | "submit" | "reset", type of the button
+ * @param width - "w-full" | "w-fit", width of the button
+ * @param rest - ButtonHTMLAttributes<HTMLButtonElement>, other props
+ * @returns ReactNode
+ */
 import { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,3 +29,4 @@ const Button = ({ children, className, type, width, ...rest }: IProps) => {
 };
 
 export default Button;
+

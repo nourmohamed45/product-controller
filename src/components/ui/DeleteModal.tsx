@@ -1,3 +1,15 @@
+/**
+ * DeleteModal Component
+ *
+ * This component is a modal that will be used to confirm
+ * if the user really wants to delete a product
+ *
+ * @param {boolean} isOpenDeleteConfirmModal - If the modal is open or not
+ * @param {() => void} closeDeleteConfirmModal - Function to close the modal
+ * @param {string} title - The title of the modal
+ * @param {ReactNode} children - The content of the modal
+ * @returns {JSX.Element} The modal component
+ */
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { ReactNode } from "react";
 
@@ -53,3 +65,4 @@ const DeleteModal = ({
 };
 
 export default DeleteModal;
+

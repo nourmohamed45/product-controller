@@ -1,6 +1,6 @@
 import { TProductName } from "../types";
 
-
+// Interface for Product with optional id and nested category details
 export interface IProduct {
   id?: string;
   title: string;
@@ -14,6 +14,7 @@ export interface IProduct {
   }
 }
 
+// Interface for Form Input for product details
 export interface IFormInput {
   id: string;
   name: TProductName;
@@ -21,6 +22,7 @@ export interface IFormInput {
   type: string;
 }
 
+// Interface for Category with unique identifier and image URL
 export interface ICategory {
   id: string;
   name: string;

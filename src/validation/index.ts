@@ -1,35 +1,3 @@
-/**
- * Validates a product object to ensure that each required field meets specified
- * criteria such as length, format, and type.
- *
- * @param product - An object containing product details, including:
- *    - title: A string representing the product's title (required, 10-80 characters).
- *    - description: A string providing details about the product (required, 20-500 characters).
- *    - price: A string representing the product's price, which should be a valid numeric value.
- *    - imageURL: A string containing the URL of the product's image (required, valid URL format).
- *
- * @returns An object containing error messages for each field if validation fails, 
- *          otherwise returns an empty object if all fields are valid.
- * 
- * @example
- * // Example of a product object that would pass validation:
- * const product = {
- *   title: "Sample Product",
- *   description: "This is a sample description for the product.",
- *   price: "25.99",
- *   imageURL: "https://example.com/image.jpg"
- * };
- * const errors = productValidator(product);
- * // errors will be an empty object if the product is valid.
- *
- * Validation Details:
- * - title: Must be a non-empty string between 10 and 80 characters.
- * - description: Must be a non-empty string between 20 and 500 characters.
- * - price: Must be a non-empty string representing a valid number.
- * - imageURL: Must be a non-empty string containing a valid URL (ftp, http, or https).
- */
-
-
 type ErrorMsgType = {
   title: string;
   description: string;
@@ -37,13 +5,50 @@ type ErrorMsgType = {
   imageURL: string;
   colors: string;
 };
-export const productValidator = (product: {
+
+interface ProductInput {
   title: string;
   description: string;
   price: string;
   imageURL: string;
   colors: string | string[];
-}): ErrorMsgType => {
+}
+
+/**
+ * Validates a product object and returns validation error messages
+ * @param {ProductInput} product - The product object to validate
+ * @returns {ErrorMsgType} Object containing validation error messages
+ *
+ * @example
+ * const product = {
+ *   title: "Sample Product",
+ *   description: "This is a sample product description",
+ *   price: "99.99",
+ *   imageURL: "https://example.com/image.jpg",
+ *   colors: ["red", "blue"]
+ * };
+ * const errors = productValidator(product);
+ *
+ * @example
+ * // Example with validation errors
+ * const invalidProduct = {
+ *   title: "Short",     // Too short, will trigger error
+ *   description: "",    // Empty, will trigger error
+ *   price: "abc",       // Not a number, will trigger error
+ *   imageURL: "invalid-url", // Invalid URL, will trigger error
+ *   colors: []          // Empty array, will trigger error
+ * };
+ * const errors = productValidator(invalidProduct);
+ *
+ * @remarks
+ * Validation rules:
+ * - Title: Must be 10-80 characters long
+ * - Description: Must be 20-500 characters long
+ * - ImageURL: Must be a valid URL starting with http://, https://, or ftp://
+ * - Price: Must be a valid number
+ * - Colors: If array, must contain at least one color
+ */
+export const productValidator = (product: ProductInput): ErrorMsgType => {
   const errors: ErrorMsgType = {
     title: "",
     description: "",

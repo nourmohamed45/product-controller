@@ -1,3 +1,9 @@
+/**
+ * A component that renders a circle with a given color
+ * @param {string} color - The color of the circle
+ * @param {HTMLAttributes<HTMLSpanElement>} rest - Other props from the HTMLDivElement
+ * @returns {JSX.Element} The component
+ */
 import { HTMLAttributes } from "react";
 
 interface IProps extends HTMLAttributes<HTMLSpanElement> {
@@ -10,4 +16,4 @@ const CircleColor = ({color, ...rest}: IProps) => {
   )
 }
 
-export default CircleColor
+export default CircleColor;
