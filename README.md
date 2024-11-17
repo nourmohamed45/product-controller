@@ -44,7 +44,7 @@ To get a local copy of the project up and running, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone git@github.com:your-username/product-controller.git
+   git clone https://github.com/nourmohamed45/product-controller.git
    ```
 
 2. **Navigate to the project directory**:
@@ -62,7 +62,7 @@ To get a local copy of the project up and running, follow these steps:
    npm run dev
    ```
 
-5. Open your browser and visit `http://localhost:3000` to explore the **Product Controller** application.
+5. Open your browser and visit `http://localhost:5173` to explore the **Product Controller** application.
 
 ## Contributing 🤝
 
@@ -80,8 +80,8 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 ## Contact Information 📬
 
 Feel free to reach out for questions or collaboration opportunities:
-- **Email**: your-email@example.com
-- **GitHub**: [Your GitHub Profile](https://github.com/your-username)
+- **Email**: nourelagwany45@gmail.com
+- **GitHub**: [Your GitHub Profile](https://github.com/nourmohamed45)
 
 ---
 
